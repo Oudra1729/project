@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
-import { 
-  MapPin, 
-  ExternalLink, 
+import React, { useState } from "react";
+import ayoub from "./assets/ayoub1.jpg";
+import pict1 from "./assets/pict1.jpg";
+import pict2 from "./assets/pict2.jpg";
+import pict3 from "./assets/pict3.jpg";
+import pict4 from "./assets/pict4.jpg";
+import pict5 from "./assets/pict5.jpg";
+
+import {
+  MapPin,
+  ExternalLink,
   Mail,
   Phone,
   Linkedin,
@@ -24,8 +31,8 @@ import {
   Box,
   Settings,
   Camera,
-  Image
-} from 'lucide-react';
+  Image,
+} from "lucide-react";
 
 function App() {
   const [activeProject, setActiveProject] = useState(0);
@@ -34,76 +41,90 @@ function App() {
     {
       id: 1,
       title: "Smart Meter Installation & Monitoring System",
-      description: "Installation and configuration of smart meters for real-time power consumption monitoring. This smart meter measures in real-time the power consumed by the house on the public electricity distribution network, enabling precise energy management and optimization.",
-      image: "https://images.pexels.com/photos/8853502/pexels-photo-8853502.jpeg?auto=compress&cs=tinysrgb&w=800",
+      description:
+        "Installation and configuration of smart meters for real-time power consumption monitoring. This smart meter measures in real-time the power consumed by the house on the public electricity distribution network, enabling precise energy management and optimization.",
+      image: pict4,
       type: "Smart Monitoring",
       capacity: "Monitoring System",
       location: "Morocco",
       year: "2024",
-      features: ["Real-time Monitoring", "Grid Integration", "Smart Technology", "Energy Optimization"],
+      features: [
+        "Real-time Monitoring",
+        "Grid Integration",
+        "Smart Technology",
+        "Energy Optimization",
+      ],
       savings: "Real-time Energy Management",
       gallery: [
         "Smart meter placement and configuration",
         "Real-time power measurement setup",
-        "Grid connection optimization"
-      ]
+        "Grid connection optimization",
+      ],
     },
     {
       id: 2,
       title: "Commercial Solar Installation - 60kWc Casablanca",
-      description: "Large-scale commercial solar installation in Casablanca with 60kWc capacity. The system features 5 string configurations with optimized wiring design for maximum efficiency. Complete AC/DC cabinet installation with professional inverter placement and final mounting systems.",
-      image: "https://images.pexels.com/photos/9875365/pexels-photo-9875365.jpeg?auto=compress&cs=tinysrgb&w=800",
+      description:
+        "Large-scale commercial solar installation in Casablanca with 60kWc capacity. The system features 5 string configurations with optimized wiring design for maximum efficiency. Complete AC/DC cabinet installation with professional inverter placement and final mounting systems.",
+      image: pict5,
       type: "Commercial",
       capacity: "60kWc",
       location: "Casablanca, Morocco",
       year: "2024",
-      features: ["5 String Configuration", "Commercial Grade", "AC/DC Cabinets", "Professional Wiring"],
+      features: [
+        "5 String Configuration",
+        "Commercial Grade",
+        "AC/DC Cabinets",
+        "Professional Wiring",
+      ],
       savings: "75% Energy Cost Reduction",
       gallery: [
         "Inverter placement and configuration",
         "AC/DC cabinet installation",
-        "Final mounting and fixation systems"
-      ]
-    }
+        "Final mounting and fixation systems",
+      ],
+    },
   ];
 
   const workGallery = [
     {
       title: "Smart Meter Installation",
-      description: "Installing and configuring smart meters for real-time monitoring",
-      image: "https://images.pexels.com/photos/8853502/pexels-photo-8853502.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Installation"
+      description:
+        "Installing and configuring smart meters for real-time monitoring",
+      image: pict4,
+      category: "Installation",
     },
     {
       title: "Inverter Configuration",
       description: "Professional inverter placement and system configuration",
-      image: "https://images.pexels.com/photos/9875414/pexels-photo-9875414.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Technical Setup"
+      image: pict2,
+      category: "Technical Setup",
     },
     {
       title: "AC/DC Cabinet Work",
       description: "Installing and wiring AC/DC cabinets for solar systems",
-      image: "https://images.pexels.com/photos/2800832/pexels-photo-2800832.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Electrical Work"
+      image: pict3,
+      category: "Electrical Work",
     },
     {
       title: "Solar Panel Mounting",
       description: "Final mounting and fixation systems installation",
-      image: "https://images.pexels.com/photos/159397/solar-panel-array-power-sun-electricity-159397.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Mounting"
+      image: pict5,
+      category: "Mounting",
     },
     {
       title: "System Wiring",
-      description: "Professional wiring and cable management for solar installations",
-      image: "https://images.pexels.com/photos/9875365/pexels-photo-9875365.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Wiring"
+      description:
+        "Professional wiring and cable management for solar installations",
+      image: pict4,
+      category: "Wiring",
     },
     {
       title: "Quality Control",
       description: "Final inspection and system testing procedures",
-      image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600",
-      category: "Testing"
-    }
+      image: pict1,
+      category: "Testing",
+    },
   ];
 
   return (
@@ -117,12 +138,24 @@ function App() {
                 <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full flex items-center justify-center">
                   <Sun className="h-6 w-6 text-white" />
                 </div>
-                <span className="text-xl font-bold text-gray-900">Ayoub ELHOUZ</span>
+                <span className="text-xl font-bold text-gray-900">
+                  Ayoub ELHOUZ
+                </span>
               </div>
             </div>
             <div className="hidden md:flex items-center space-x-8">
-              <a href="#projects" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Projects</a>
-              <a href="#gallery" className="text-gray-600 hover:text-emerald-600 font-medium transition-colors">Gallery</a>
+              <a
+                href="#projects"
+                className="text-gray-600 hover:text-emerald-600 font-medium transition-colors"
+              >
+                Projects
+              </a>
+              <a
+                href="#gallery"
+                className="text-gray-600 hover:text-emerald-600 font-medium transition-colors"
+              >
+                Gallery
+              </a>
             </div>
           </div>
         </div>
@@ -140,11 +173,13 @@ function App() {
                   <Sun className="h-8 w-8 text-white" />
                 </div>
                 <div>
-                  <h1 className="text-4xl lg:text-5xl font-bold mb-2">Ayoub ELHOUZ</h1>
+                  <h1 className="text-4xl lg:text-5xl font-bold mb-2">
+                    Ayoub ELHOUZ
+                  </h1>
                   <p className="text-xl text-emerald-200">Solar Technician</p>
                 </div>
               </div>
-              
+
               <div className="space-y-4 mb-8">
                 <div className="flex items-center space-x-3">
                   <Zap className="h-5 w-5 text-emerald-400" />
@@ -152,7 +187,9 @@ function App() {
                 </div>
                 <div className="flex items-center space-x-3">
                   <Battery className="h-5 w-5 text-emerald-400" />
-                  <span className="text-lg">Off-Grid & Hybrid Installations</span>
+                  <span className="text-lg">
+                    Off-Grid & Hybrid Installations
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <FileText className="h-5 w-5 text-emerald-400" />
@@ -169,14 +206,14 @@ function App() {
               </div>
 
               <div className="flex flex-wrap gap-4">
-                <a 
-                  href="#projects" 
+                <a
+                  href="#projects"
                   className="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-3 rounded-full font-semibold hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
                 >
                   View Projects
                 </a>
-                <a 
-                  href="#gallery" 
+                <a
+                  href="#gallery"
                   className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-slate-900 transition-all duration-300"
                 >
                   Work Gallery
@@ -187,9 +224,9 @@ function App() {
             <div className="relative">
               <div className="relative z-10">
                 <img
-                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=500"
+                  src={ayoub}
                   alt="Ayoub ELHOUZ"
-                  className="w-80 h-80 rounded-full object-cover border-8 border-white/20 shadow-2xl mx-auto"
+                  className="w-80 h-90 rounded-full object-cover border-8 border-white/20 shadow-2xl mx-auto"
                 />
               </div>
               <div className="absolute top-4 right-4 w-72 h-72 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 rounded-full blur-3xl"></div>
@@ -203,15 +240,21 @@ function App() {
       <section id="projects" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Featured Projects</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Featured Projects
+            </h2>
             <p className="text-xl text-gray-600">
-              Showcasing key technical installations and smart monitoring solutions
+              Showcasing key technical installations and smart monitoring
+              solutions
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <div key={project.id} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100">
+              <div
+                key={project.id}
+                className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+              >
                 <div className="relative h-64">
                   <img
                     src={project.image}
@@ -231,17 +274,23 @@ function App() {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    {project.title}
+                  </h3>
                   <p className="text-gray-600 mb-4">{project.description}</p>
 
                   <div className="grid grid-cols-2 gap-4 mb-4">
                     <div>
                       <p className="text-sm text-gray-500">Location</p>
-                      <p className="font-medium text-gray-900">{project.location}</p>
+                      <p className="font-medium text-gray-900">
+                        {project.location}
+                      </p>
                     </div>
                     <div>
                       <p className="text-sm text-gray-500">Year</p>
-                      <p className="font-medium text-gray-900">{project.year}</p>
+                      <p className="font-medium text-gray-900">
+                        {project.year}
+                      </p>
                     </div>
                   </div>
 
@@ -249,7 +298,10 @@ function App() {
                     <p className="text-sm text-gray-500 mb-2">Key Features</p>
                     <div className="flex flex-wrap gap-2">
                       {project.features.map((feature, idx) => (
-                        <span key={idx} className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-md text-xs font-medium">
+                        <span
+                          key={idx}
+                          className="bg-emerald-100 text-emerald-800 px-2 py-1 rounded-md text-xs font-medium"
+                        >
                           {feature}
                         </span>
                       ))}
@@ -257,7 +309,9 @@ function App() {
                   </div>
 
                   <div className="mb-4">
-                    <p className="text-sm text-gray-500 mb-2">Project Gallery</p>
+                    <p className="text-sm text-gray-500 mb-2">
+                      Project Gallery
+                    </p>
                     <ul className="text-sm text-gray-600 space-y-1">
                       {project.gallery.map((item, idx) => (
                         <li key={idx} className="flex items-center space-x-2">
@@ -271,7 +325,9 @@ function App() {
                   <div className="flex items-center justify-between pt-4 border-t border-gray-100">
                     <div>
                       <p className="text-sm text-gray-500">Result</p>
-                      <p className="font-semibold text-emerald-600">{project.savings}</p>
+                      <p className="font-semibold text-emerald-600">
+                        {project.savings}
+                      </p>
                     </div>
                     <button className="flex items-center space-x-2 text-emerald-600 hover:text-emerald-700 font-medium">
                       <span>View Details</span>
@@ -289,15 +345,21 @@ function App() {
       <section id="gallery" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Work Gallery</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+              Work Gallery
+            </h2>
             <p className="text-xl text-gray-600">
-              Behind the scenes of professional solar installations and technical work
+              Behind the scenes of professional solar installations and
+              technical work
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {workGallery.map((item, index) => (
-              <div key={index} className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <div
+                key={index}
+                className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+              >
                 <div className="relative h-64 overflow-hidden">
                   <img
                     src={item.image}
@@ -318,7 +380,9 @@ function App() {
                 <div className="p-4 group-hover:bg-emerald-50 transition-colors duration-300">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="font-semibold text-gray-900 group-hover:text-emerald-700">{item.title}</h3>
+                      <h3 className="font-semibold text-gray-900 group-hover:text-emerald-700">
+                        {item.title}
+                      </h3>
                       <p className="text-sm text-gray-600">{item.category}</p>
                     </div>
                     <div className="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center group-hover:bg-emerald-200 transition-colors duration-300">
@@ -333,7 +397,9 @@ function App() {
           <div className="text-center mt-12">
             <div className="inline-flex items-center space-x-2 bg-white px-6 py-3 rounded-full shadow-md">
               <Image className="h-5 w-5 text-emerald-600" />
-              <span className="text-gray-700 font-medium">Professional installations and technical expertise</span>
+              <span className="text-gray-700 font-medium">
+                Professional installations and technical expertise
+              </span>
             </div>
           </div>
         </div>
@@ -347,23 +413,38 @@ function App() {
               <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full flex items-center justify-center">
                 <Sun className="h-6 w-6 text-white" />
               </div>
-              <span className="text-2xl font-bold">Ayoub ELHOUZ</span>
+              <span className="text-2xl font-bold">Ayoub ELHOUZ |+212 639-994263</span>
             </div>
-            <p className="text-gray-400 mb-6">Solar Technician | Powering the Future with Clean Energy</p>
+            <p className="text-gray-400 mb-6">
+              Solar Technician | Powering the Future with Clean Energy
+            </p>
             <div className="flex justify-center space-x-6">
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors">
+              <a
+                href="https://www.linkedin.com/in/ayoub-elhouz/"
+                className="text-gray-400 hover:text-emerald-400 transition-colors"
+              >
                 <Linkedin className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors">
+              <a
+                href="mailto:ayoubelhouzz@gmail.com"
+                className="text-gray-400 hover:text-emerald-400 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Mail className="h-6 w-6" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-emerald-400 transition-colors">
+
+              <a
+                href="#"
+                className="text-gray-400 hover:text-emerald-400 transition-colors"
+              >
                 <Phone className="h-6 w-6" />
               </a>
             </div>
             <div className="mt-8 pt-8 border-t border-gray-800">
               <p className="text-gray-400 text-sm">
-                © 2024 Ayoub ELHOUZ. All rights reserved. | Specializing in Solar Energy Solutions
+                © 2024 Ayoub ELHOUZ. All rights reserved. | Specializing in
+                Solar Energy Solutions
               </p>
             </div>
           </div>

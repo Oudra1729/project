@@ -24,9 +24,12 @@ jobs:
       - name: 📦 Install dependencies
         run: npm install
 
+      - name: 🔍 Run ESLint
+        run: npm run lint
+
       - name: 🔨 Build project
         run: npm run build
 
       - name: ✅ Run tests (optional)
         run: npm run test
-        continue-on-error: true  # إذا ماعندك tests ما غادي يوقف
+        continue-on-error: true

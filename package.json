@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "lint": "eslint . --ext .ts,.tsx",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",

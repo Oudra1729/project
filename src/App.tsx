@@ -1,37 +1,28 @@
-import React, { useState } from 'react';
-import { AuthProvider } from './contexts/AuthContext';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Features from './components/Features';
-import Products from './components/Products';
-import Footer from './components/Footer';
-import AuthModal from './components/AuthModal';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import Home from "./pages/home";
+import ProductDetails from "./pages/product";
+import AboutUs from "./pages/about";
+import Contact from "./pages/contact";
+import Services from "./pages/services";
+// import "./App.css";
 
-function App() {
-  const [isAuthOpen, setIsAuthOpen] = useState(false);
-
+const App: React.FC = () => {
   return (
     <AuthProvider>
-      <div className="min-h-screen" dir="rtl">
-        {/* ندوزو event للـ Navbar */}
-        <Navbar onLoginClick={() => setIsAuthOpen(true)} />
-
-        <main>
-          <Hero />
-          <Features />
-          <Products />
-        </main>
-
-        <Footer />
-
-        {/* المودال هنا ديما فوق كلشي */}
-        <AuthModal 
-          isOpen={isAuthOpen} 
-          onClose={() => setIsAuthOpen(false)} 
-        />
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products/:productId" element={<ProductDetails />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="*" element={<div>404 Not Found</div>} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/services" element={<Services />} />
+        </Routes>
+      </Router>
     </AuthProvider>
   );
-}
+};
 
 export default App;

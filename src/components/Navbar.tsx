@@ -2,22 +2,18 @@ import React, { useState } from 'react';
 import { Menu, X, Zap, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
-interface NavbarProps {
-  onLoginClick: () => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({ onLoginClick }) => {
+const Navbar = ({ onLoginClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const { user, logout } = useAuth();
 
   const navItems = [
-    { name: 'الرئيسية', href: '#home' },
-    { name: 'من نحن', href: '#about' },
+    { name: 'الرئيسية', href: '/' },
+    { name: 'من نحن', href: 'about' },
     { name: 'المنتجات', href: '#products' },
-    { name: 'خدماتنا', href: '#services' },
+    { name: 'خدماتنا', href: 'services' },
     { name: 'المميزات', href: '#features' },
-    { name: 'تواصل معنا', href: '#contact' },
+    { name: 'تواصل معنا', href: 'contact' },
   ];
 
   return (
@@ -29,7 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({ onLoginClick }) => {
             <div className="bg-gradient-to-r from-orange-500 to-orange-600 p-2 rounded-lg">
               <Zap className="h-6 w-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-gray-900">تيك ستور</span>
+            <span className="text-xl font-bold text-gray-900">تيك ستور </span>
           </div>
 
           {/* Desktop Navigation */}

@@ -102,15 +102,15 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-center space-x-3 rtl:space-x-reverse text-gray-400">
                 <Mail className="h-5 w-5 text-orange-500" />
-                <span>info@techkum.com</span>
+                <span>info@techstore.com</span>
               </div>
               <div className="flex items-center space-x-3 rtl:space-x-reverse text-gray-400">
                 <Phone className="h-5 w-5 text-orange-500" />
-                <span dir="ltr">+966 50 123 4567</span>
+                <span dir="ltr">+212 6 659 8053</span>
               </div>
               <div className="flex items-start space-x-3 rtl:space-x-reverse text-gray-400">
                 <MapPin className="h-5 w-5 text-orange-500 mt-1" />
-                <span>الرياض، المملكة العربية السعودية</span>
+                <span>الدارالبيضاء  المغرب</span>
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8 mt-12">
           <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
             <div className="text-gray-400 text-sm">
-              © 2024 تقنيتك. جميع الحقوق محفوظة.
+              © 2024 تيك ستور. جميع الحقوق محفوظة.
             </div>
             <div className="flex space-x-6 rtl:space-x-reverse">
               {legalLinks.map((link) => (

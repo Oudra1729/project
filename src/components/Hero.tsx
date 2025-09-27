@@ -7,17 +7,29 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Badge */}
         <div className="text-center mb-8">
-          <span className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-orange-100 text-orange-800 mb-6">
-            ⚡ مجموعة قائدة
-          </span>
+            <span className="text-sm font-bold text-right px-4 py-2 rounded-full border border-stone-200 bg-white text-stone-600">
+            مجموعة فاخرة✨{" "}
+            <svg
+              className="h-3 w-3 inline-block"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M17 17L7 7"></path>
+              <path d="M17 7H7v10"></path>
+            </svg>
+            </span>
         </div>
 
         {/* Main Content */}
         <div className="text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            ارتق بتجربتك
+            ارتق بتجربتك⚡
             <br />
-            <span className="bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
+            <span className="bg-black bg-clip-text text-transparent">
               التقنية
             </span>
           </h1>
@@ -29,11 +41,11 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-8 py-4 rounded-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl flex items-center gap-2">
+            <button className="bg-black text-white px-8 py-4 rounded-xl hover:from-black-600 hover:to-black-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl flex items-center gap-2">
               تسوق المجموعة
               <ArrowLeft className="h-5 w-5 rotate-180" />
             </button>
-            <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl hover:border-orange-500 hover:text-orange-600 transition-all duration-200 font-semibold text-lg">
+            <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl hover:border-black-500 hover:text-black-600 transition-all duration-200 font-semibold text-lg">
               اعرف المزيد
             </button>
           </div>

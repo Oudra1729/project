@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Star, Heart, Eye, MessageCircle, Filter } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Product } from "../types";
 
 const Products = () => {
@@ -127,14 +128,20 @@ const Products = () => {
   useEffect(() => {
     const loadProducts = async () => {
       setLoading(true);
-      setTimeout(() => {
-        setProducts(mockProducts);
+      try {
+        // Simulate API call
+        setTimeout(() => {
+          setProducts(mockProducts);
+          setLoading(false);
+        }, 1000);
+      } catch (error) {
+        console.error('Error loading products:', error);
         setLoading(false);
-      }, 1000);
+      }
     };
 
     loadProducts();
-  }, [setProducts]);
+  }, []);
 
   const categories = [
     { value: "all", label: "جميع المنتجات" },
@@ -294,15 +301,21 @@ const Products = () => {
                   <button
                     className="bg-white p-2 rounded-full shadow-lg hover:bg-orange-50 transition-colors"
                     title="إضافة إلى المفضلة"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      // Add to favorites logic here
+                      console.log('Add to favorites:', product.id);
+                    }}
                   >
                     <Heart className="h-5 w-5 text-gray-600 hover:text-red-500" />
                   </button>
-                  <button
+                  <Link
+                    to={`/products/${product.id}`}
                     className="bg-white p-2 rounded-full shadow-lg hover:bg-orange-50 transition-colors"
                     title="عرض المنتج"
                   >
                     <Eye className="h-5 w-5 text-gray-600 hover:text-orange-500" />
-                  </button>
+                  </Link>
                 </div>
               </div>
 
@@ -364,6 +377,14 @@ const Products = () => {
 
                   <button
                     disabled={!product.in_stock}
+                    onClick={() => {
+                      if (product.in_stock) {
+                        // Handle WhatsApp order logic
+                        const message = `أريد طلب ${product.name_ar} بسعر ${product.price} دم`;
+                        const whatsappUrl = `https://wa.me/YOUR_PHONE_NUMBER?text=${encodeURIComponent(message)}`;
+                        window.open(whatsappUrl, '_blank');
+                      }
+                    }}
                     className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-all duration-200 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <MessageCircle className="h-4 w-4" />
@@ -385,4 +406,215 @@ const Products = () => {
   );
 };
 
+// Separate Form component (can be used independently)
+const Form = () => {
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [orderId, setOrderId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleFormSubmit = async () => {
+    setIsLoading(true);
+    
+    try {
+      const formData = new FormData();
+      formData.append("full_name", "John Doe");
+      formData.append("email", "john@example.com");
+      formData.append("phone", "1234567890");
+
+      const data = Object.fromEntries(formData.entries());
+      
+      const orderData = {
+        ...data
+      };
+      
+      console.log('Order data:', orderData);
+      
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderData),
+      });
+      
+      if (response.ok) {
+        const result = await response.json();
+        setIsSuccess(true);
+        setOrderId(result.orderId || result.id || 'ORDER_' + Date.now());
+      } else {
+        const errorText = await response.text();
+        console.error('Order submission failed:', errorText);
+        alert("فشل إرسال الطلب, يرجى المحاولة مرة أخرى");
+      }
+    } catch (error) {
+      console.error('Order submission error:', error);
+      alert("فشل إرسال الطلب, يرجى المحاولة مرة أخرى");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="w-full">
+      {!isSuccess ? (
+        <div className="bg-white shadow-lg border border-stone-200 rounded-lg max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 mb-6 sm:mb-10">
+          <h1 className="text-xl sm:text-2xl font-bold text-black text-center">
+            اطلب منتجك الآن
+          </h1>
+          <p className="text-stone-600 text-center mb-6 sm:mb-8 text-sm sm:text-base">
+            املأ البيانات التالية وسنتواصل معك لإتمام الطلب
+          </p>
+          <form onSubmit={handleFormSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <label
+                htmlFor="fullName"
+                dir="rtl"
+                className="block text-right text-sm sm:text-md font-semibold text-black"
+              >
+                الاسم الكامل *{" "}
+              </label>
+              <input
+                required
+                name="full_name"
+                placeholder="أدخل اسمك الكامل"
+                type="text"
+                dir="rtl"
+                id="fullName"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-colors text-sm sm:text-base"
+              />
+            </div>
+            <div className="space-y-2">
+              <label
+                htmlFor="email"
+                dir="rtl"
+                className="block text-right text-sm sm:text-md font-semibold text-black"
+              >
+                البريد الإلكتروني *{" "}
+              </label>
+              <input
+                required
+                name="email"
+                type="email"
+                placeholder="example@email.com"
+                dir="rtl"
+                id="email"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-colors text-sm sm:text-base"
+              />
+            </div>
+            <div className="space-y-2">
+              <label
+                htmlFor="phone"
+                dir="rtl"
+                className="block text-right text-sm sm:text-md font-semibold text-black"
+              >
+                رقم الهاتف *{" "}
+              </label>
+              <input
+                required
+                name="phone"
+                placeholder="+212 XX XXX XXXX"
+                type="tel"
+                dir="rtl"
+                id="phone"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-colors text-sm sm:text-base"
+              />
+            </div>
+            <div className="space-y-2">
+              <label
+                htmlFor="city"
+                dir="rtl"
+                className="block text-right text-sm sm:text-md font-semibold text-black"
+              >
+                المدينة *{" "}
+              </label>
+              <select
+                required
+                name="city"
+                dir="rtl"
+                id="city"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-colors text-sm sm:text-base"
+              >
+                <option value="">اختر المدينة</option>
+                <option value="الدار البيضاء">الدار البيضاء</option>
+                <option value="الرباط">الرباط</option>
+                <option value="مراكش">مراكش</option>
+                <option value="فاس">فاس</option>
+                <option value="طنجة">طنجة</option>
+                <option value="أكادير">أكادير</option>
+                <option value="مكناس">مكناس</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label
+                htmlFor="location"
+                dir="rtl"
+                className="block text-right text-sm sm:text-md font-semibold text-black"
+              >
+                العنوان *{" "}
+              </label>
+              <textarea
+                required
+                placeholder="أدخل عنوانك الكامل للتوصيل"
+                dir="rtl"
+                name="address"
+                id="location"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none transition-colors text-sm sm:text-base resize-none"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full bg-black text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-medium hover:bg-stone-800 transition-colors shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isLoading ? "جاري الإرسال..." : "اطلب الآن"}
+            </button>
+          </form>
+        </div>
+      ) : (
+        <div className="bg-white min-h-[40vh] sm:min-h-[50vh] shadow-lg border border-stone-200 rounded-lg max-w-xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 mb-6 sm:mb-10 flex flex-col items-center justify-center space-y-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-8 h-8 sm:w-10 sm:h-10 text-green-500"
+          >
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          <h1 className="text-lg sm:text-2xl font-bold text-black text-center">
+            تم إرسال طلبك بنجاح! سنتواصل معك قريباً
+          </h1>
+          <p className="text-stone-600 text-center text-sm sm:text-base px-2">
+            شكراً لك على طلب هذا المنتج. نقدر اختيارك لنا وسنعمل على معالجة طلبك
+            في أقرب وقت ممكن
+          </p>
+          {orderId && (
+            <img
+              src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${orderId}`}
+              alt="QR Code"
+              className="w-20 h-20 sm:w-30 sm:h-30"
+            />
+          )}
+          <button
+            onClick={() => {
+              setIsSuccess(false);
+              setOrderId(null);
+            }}
+            className="w-full max-w-sm bg-black text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-lg font-medium hover:bg-stone-800 transition-colors shadow-lg hover:shadow-xl"
+          >
+            طلب منتج آخر
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default Products;
+export { Form };

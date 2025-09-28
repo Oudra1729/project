@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import { Menu, X, Zap, LogOut } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
-const Navbar = ({ onLoginClick }) => {
+interface NavbarProps {
+  onLoginClick: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onLoginClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const { user, logout } = useAuth();
@@ -46,9 +50,9 @@ const Navbar = ({ onLoginClick }) => {
                   className="flex items-center space-x-2 rtl:space-x-reverse bg-gradient-to-r from-orange-500 to-orange-600 text-white px-4 py-2 rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all duration-200 font-medium"
                 >
                   <div className="w-8 h-8 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-sm font-bold">
-                    {user.name.charAt(0).toUpperCase()}
+                    {user.username.charAt(0).toUpperCase()}
                   </div>
-                  <span>{user.name}</span>
+                  <span>{user.username}</span>
                 </button>
                 
                 {showUserMenu && (

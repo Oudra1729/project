@@ -19,51 +19,6 @@ interface Product {
   in_stock?: boolean;
 }
 
-// Mock data
-const mockProducts: Product[] = [
-  {
-    id: "1",
-    name: "Wireless Headphones Pro",
-    name_ar: "سماعات لاسلكية احترافية",
-    description: "Premium wireless headphones with noise cancellation",
-    description_ar: "سماعات لاسلكية فاخرة مع خاصية إلغاء الضوضاء",
-    price: 299,
-    original_price: 399,
-    images: [
-      "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=500",
-      "https://images.pexels.com/photos/1649771/pexels-photo-1649771.jpeg?auto=compress&cs=tinysrgb&w=500",
-      "https://images.pexels.com/photos/205926/pexels-photo-205926.jpeg?auto=compress&cs=tinysrgb&w=500"
-    ],
-    badge: "الأكثر مبيعاً",
-    features: ["Noise Cancellation", "Bluetooth 5.0", "30h Battery"],
-    features_ar: ["إلغاء الضوضاء", "بلوتوث 5.0", "بطارية 30 ساعة"],
-    specifications: { "Battery Life": "30 hours", "Range": "10m", "Color": "Black" },
-    in_stock: true,
-  },
-  // Add other products here...
-];
-
-const badgeClassesMap: Record<string, string> = {
-  red: "text-red-500 border-red-500 bg-red-200",
-  green: "text-green-500 border-green-500 bg-green-200",
-  orange: "text-orange-500 border-orange-500 bg-orange-200",
-  purple: "text-purple-500 border-purple-500 bg-purple-200",
-  blue: "text-blue-500 border-blue-500 bg-blue-200",
-  yellow: "text-yellow-500 border-yellow-500 bg-yellow-200",
-  stone: "text-stone-500 border-stone-500 bg-stone-200",
-};
-
-const getBadgeColor = (badge: string) => {
-  const map: Record<string, string> = {
-    "الأكثر مبيعاً": "red",
-    جديد: "green",
-    "عرض محدود": "orange",
-    مميز: "purple",
-    للمحترفين: "blue",
-    "توصية الخبراء": "yellow",
-  };
-  return map[badge] || "stone";
-};
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams<{ productId: string }>();
@@ -72,8 +27,12 @@ const ProductDetails: React.FC = () => {
 
   useEffect(() => {
     if (productId) {
-      const found = mockProducts.find((p) => p.id === productId);
-      setProduct(found || null);
+      const fetchProduct = async () => {
+        const response = await fetch(`http://localhost:4000/products/${productId}`);
+        const data = await response.json();
+        setProduct(data || null);
+      };
+      fetchProduct();
     }
   }, [productId]);
 
@@ -86,8 +45,6 @@ const ProductDetails: React.FC = () => {
       </div>
     );
   }
-
-  const badgeColor = getBadgeColor(product.badge || "");
 
   return (
     <>
@@ -125,9 +82,15 @@ const ProductDetails: React.FC = () => {
           {product.badge && (
             <div className="flex justify-end">
               <span
-                className={`text-sm sm:text-md font-medium px-3 py-2 sm:px-4 shadow-sm rounded-full border ${
-                  badgeClassesMap[badgeColor]
-                }`}
+              className={`text-sm sm:text-md font-medium px-3 py-2 sm:px-4 shadow-sm rounded-full border ${
+                product.badge === "جديد"
+                ? "bg-green-100 text-green-700 border-green-300"
+                : product.badge === "خصم"
+                ? "bg-yellow-100 text-yellow-700 border-yellow-300"
+                : product.badge === "الأكثر مبيعاً"
+                ? "bg-blue-100 text-blue-700 border-blue-300"
+                : "bg-stone-100 text-stone-700 border-stone-300"
+              }`}
               >
                 {product.badge}
               </span>

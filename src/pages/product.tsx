@@ -92,7 +92,7 @@ const ProductDetails: React.FC = () => {
   return (
     <>
       {/* Navbar */}
-      <nav className="bg-white shadow-sm border-b border-stone-200 shadow-lg">
+      <nav className="bg-white shadow-sm border-b border-stone-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <span className="font-bold text-xl text-black">تيك ستور</span>
